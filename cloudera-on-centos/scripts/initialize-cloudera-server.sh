@@ -63,17 +63,42 @@ set +e
 
 log "Set cloudera-manager.repo to CM v5"
 yum clean all >> /tmp/initialize-cloudera-server.log
-rpm --import http://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera >> /tmp/initialize-cloudera-server.log
-wget http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/cloudera-manager.repo -O /etc/yum.repos.d/cloudera-manager.repo >> /tmp/initialize-cloudera-server.log
-# this often fails so adding retry logic
-n=0
-until [ $n -ge 5 ]
-do
-    yum install -y oracle-j2sdk* cloudera-manager-daemons cloudera-manager-server >> /tmp/initialize-cloudera-server.log 2>> /tmp/initialize-cloudera-server.err && break
-    n=$[$n+1]
-    sleep 15s
-done
-if [ $n -ge 5 ]; then log "scp error $remote, exiting..." & exit 1; fi
+while true
+    do
+       wget http://lilitest528.blob.core.chinacloudapi.cn/cloudera-on-centos/myrepo.repo -O /etc/yum.repos.d/myrepo.repo>> /tmp/initialize-cloudera-server-repo.log 2>> /tmp/initialize-cloudera-server-repo.err && break
+       sleep 15s
+    done
+	
+while true
+    do
+       yum install -y oracle-j2sdk* >> /tmp/initialize-cloudera-server-sdk.log 2>> /tmp/initialize-cloudera-server-sdk.err && break
+        sleep 15s
+    done
+	
+while true
+    do
+       yum install -y cloudera-manager-daemons >> /tmp/initialize-cloudera-server-daemons.log 2>> /tmp/initialize-cloudera-server-daemons.err && break
+       sleep 15s
+    done
+
+while true
+    do
+       yum install -y cloudera-manager-server >> /tmp/initialize-cloudera-server-manager.log 2>> /tmp/initialize-cloudera-server-manager.err && break
+       sleep 15s
+    done
+
+while true
+    do
+       yum install -y cloudera-manager-agent >> /tmp/initialize-cloudera-server-agent.log 2>> /tmp/initialize-cloudera-server-agent.err && break
+       sleep 15s
+    done
+	
+while true
+    do
+       yum install -y jdk.x86_64 >> /tmp/initialize-cloudera-server-jdk.log 2>> /tmp/initialize-cloudera-server-jdk.err && break
+       sleep 15s
+    done
+
 
 #######################################################################################################################
 log "installing external DB"

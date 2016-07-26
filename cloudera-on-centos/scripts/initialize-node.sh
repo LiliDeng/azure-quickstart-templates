@@ -154,6 +154,38 @@ fqdnstring=`python -c "import socket; print socket.getfqdn('$myhostname')"`
 sed -i "s/.*HOSTNAME.*/HOSTNAME=${fqdnstring}/g" /etc/sysconfig/network
 /etc/init.d/network restart
 
+wget http://lilitest528.blob.core.chinacloudapi.cn/cloudera-on-centos/myrepo.repo -O /etc/yum.repos.d/myrepo.repo
+
+while true
+    do
+       yum install -y oracle-j2sdk* >> /tmp/initialize-cloudera-server-sdk.log 2>> /tmp/initialize-cloudera-server-sdk.err && break
+        sleep 15s
+    done
+	
+while true
+    do
+       yum install -y cloudera-manager-daemons >> /tmp/initialize-cloudera-server-daemons.log 2>> /tmp/initialize-cloudera-server-daemons.err && break
+       sleep 15s
+    done
+
+while true
+    do
+       yum install -y cloudera-manager-server >> /tmp/initialize-cloudera-server-manager.log 2>> /tmp/initialize-cloudera-server-manager.err && break
+       sleep 15s
+    done
+
+while true
+    do
+       yum install -y cloudera-manager-agent >> /tmp/initialize-cloudera-server-agent.log 2>> /tmp/initialize-cloudera-server-agent.err && break
+       sleep 15s
+    done
+	
+while true
+    do
+       yum install -y jdk.x86_64 >> /tmp/initialize-cloudera-server-jdk.log 2>> /tmp/initialize-cloudera-server-jdk.err && break
+       sleep 15s
+    done
+
 #disable password authentication in ssh
 #sed -i "s/UsePAM\s*yes/UsePAM no/" /etc/ssh/sshd_config
 #sed -i "s/PasswordAuthentication\s*yes/PasswordAuthentication no/" /etc/ssh/sshd_config

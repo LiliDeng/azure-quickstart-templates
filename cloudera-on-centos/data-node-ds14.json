@@ -229,11 +229,6 @@
       "apiVersion": "[parameters('resourceAPIVersion')]",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[concat(variables('vmName'), copyIndex())]",
-      "plan": {
-        "name": "cloudera-centos-6",
-        "publisher": "cloudera",
-        "product": "cloudera-centos-6"
-      },
       "location": "[resourceGroup().location]",
       "copy": {
         "name": "dataNodeNicLoop",
@@ -260,15 +255,15 @@
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "cloudera",
-            "offer": "cloudera-centos-6",
-            "sku": "CLOUDERA-CENTOS-6",
+            "publisher": "OpenLogic",
+            "offer": "CentOS",
+            "sku": "6.7",
             "version": "latest"
           },
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds/', variables('vmName'), copyIndex(), '.vhd')]"
+              "uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds/', variables('vmName'), copyIndex(), '.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -279,7 +274,7 @@
               "diskSizeGB": "512",
               "lun": 0,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds0/', variables('vmName'), '-datadisk0.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds0/', variables('vmName'), '-datadisk0.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -288,7 +283,7 @@
               "diskSizeGB": "1023",
               "lun": 1,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds1/', variables('vmName'), '-datadisk1.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds1/', variables('vmName'), '-datadisk1.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -297,7 +292,7 @@
               "diskSizeGB": "1023",
               "lun": 2,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds2/', variables('vmName'), '-datadisk2.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds2/', variables('vmName'), '-datadisk2.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -306,7 +301,7 @@
               "diskSizeGB": "1023",
               "lun": 3,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds3/', variables('vmName'), '-datadisk3.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds3/', variables('vmName'), '-datadisk3.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -315,7 +310,7 @@
               "diskSizeGB": "1023",
               "lun": 4,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds4/', variables('vmName'), '-datadisk4.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds4/', variables('vmName'), '-datadisk4.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -324,7 +319,7 @@
               "diskSizeGB": "1023",
               "lun": 5,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds5/', variables('vmName'), '-datadisk5.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds5/', variables('vmName'), '-datadisk5.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -333,7 +328,7 @@
               "diskSizeGB": "1023",
               "lun": 6,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds6/', variables('vmName'), '-datadisk6.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds6/', variables('vmName'), '-datadisk6.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -342,7 +337,7 @@
               "diskSizeGB": "1023",
               "lun": 7,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds7/', variables('vmName'), '-datadisk7.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds7/', variables('vmName'), '-datadisk7.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -351,7 +346,7 @@
               "diskSizeGB": "1023",
               "lun": 8,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds8/', variables('vmName'), '-datadisk8.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds8/', variables('vmName'), '-datadisk8.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -360,7 +355,7 @@
               "diskSizeGB": "1023",
               "lun": 9,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds9/', variables('vmName'), '-datadisk9.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds9/', variables('vmName'), '-datadisk9.vhd')]"
               },
               "createOption": "Empty"
             },
@@ -369,7 +364,7 @@
               "diskSizeGB": "1023",
               "lun": 10,
               "vhd": {
-                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.windows.net/vhds10/', variables('vmName'), '-datadisk10.vhd')]"
+                "Uri": "[concat('http://', copyIndex(), variables('storageAccountName'), '.blob.core.chinacloudapi.cn/vhds10/', variables('vmName'), '-datadisk10.vhd')]"
               },
               "createOption": "Empty"
             }
