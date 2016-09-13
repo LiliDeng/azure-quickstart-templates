@@ -70,7 +70,7 @@ def init_cluster():
     :return:
     """
     #using default username/password to login first, create new admin user base on provided value, then delete admin
-    api = ApiResource(server_host=cmx.cm_server, username="admin", password="admin")
+    api = ApiResource(server_host=cmx.cm_server, version=1, username="admin", password="admin")
     api.create_user(cmx.username, cmx.password, ['ROLE_ADMIN'])
     api = ApiResource(server_host=cmx.cm_server, username=cmx.username, password=cmx.password)
     api.delete_user("admin")
@@ -94,7 +94,7 @@ def add_hosts_to_cluster():
     :return:
     """
     print "> Add hosts to Cluster: %s" % cmx.cluster_name
-    api = ApiResource(server_host=cmx.cm_server, version=1, username=cmx.username, password=cmx.password)
+    api = ApiResource(server_host=cmx.cm_server, username=cmx.username, password=cmx.password)
     cluster = api.get_cluster(cmx.cluster_name)
     cm = api.get_cloudera_manager()
 
